@@ -18,8 +18,11 @@
               <p class="card-text">{{ cafe['city'] }} : {{ cafe['address'] }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View On Map</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+                    <a href="https://www.google.com/maps/@{{ cafe['lat'] }},{{ cafe['long'] }},15z?entry=ttu" target="_blank">
+                        <button type="submit"  class="btn btn-sm btn-outline-secondary" >View On Map</button></a>
+
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-body-secondary">9 mins</small>
               </div>
@@ -33,4 +36,3 @@
   </div>
 
 {% endblock %}
-

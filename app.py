@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, flash,request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager
+
 import os
 
 
@@ -58,8 +58,18 @@ def add_cafe():
 
     return render_template('add_cafe.html')
 
+'''
+@app.route("/view_cafe/<int:cafe_id>", methods=["GET","POST"])
+def view_cafe(cafe_id):
+    if request.method == "POST":
+        cafe =db.get_or_404(Cafe_db,cafe_id)
+        cafe_coordinates = f"{cafe.lat},{cafe.long}"
+        print(cafe_coordinates)
 
+        return render_template("view_cafe.html",cafe_coordinates=cafe_coordinates, cafe=cafe)
 
+    return redirect(url_for('home'))
+'''
 
 
 if __name__ == "__main__":
