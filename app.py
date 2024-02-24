@@ -58,6 +58,33 @@ def add_cafe():
 
     return render_template('add_cafe.html')
 
+
+@app.route("/edit_cafe/<int:cafe_id>", methods=["GET","POST"])
+def edit_cafe(cafe_id):
+
+    cafe = db.get_or_404(Cafe_db,cafe_id)
+
+    if request.method == "POST":
+        cafe.name = request.form['cafe_name']
+        cafe.city = request.form['city']
+        cafe.address = request.form['address']
+        cafe.lat = request.form['lat']
+        cafe.long = request.form['long']
+        cafe.picture_url = request.form['picture_url']
+
+        if request.form['wifi_status'] == "on":
+            cafe.wifi_status = True
+        else:
+            cafe.wifi_status = False
+
+
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template('edit_cafe.html', cafe = cafe)
+
+
+
 '''
 @app.route("/view_cafe/<int:cafe_id>", methods=["GET","POST"])
 def view_cafe(cafe_id):
